@@ -50,3 +50,5 @@ cd ~/xcode-shell
 ./ipa-build ~/iosProject -w -s test -c Debug
 
 ----
+
+可以先参考博客后使用http://blog.csdn.net/spicyshrimp/article/details/72764524
