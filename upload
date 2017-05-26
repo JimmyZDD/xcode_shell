@@ -1,0 +1,33 @@
+#! /bin/bash 
+
+# 配置ftp 
+FTP_SERVER=112.74.72.68 
+USER="ios" 
+PASSWORD="xID9gdYH" 
+FTP_PATH="/wwwroot/~/iostest" 
+# LOCAL_PATH="/Users/~/ipa_build" 
+
+
+LOCAL_PATH=$1
+
+echo $LOCAL_PATH
+echo $FTP_PATH
+
+if [[ ! -d $LOCAL_PATH ]]; then
+	echo "$LOCAL_PATH This path doesn't exit."
+	exit 2
+fi
+
+# 本地文件目录存在 执行ftp 命令
+ftp -n -i <<!
+	open $FTP_SERVER
+	user $USER $PASSWORD
+	passive
+	bin
+	cd $FTP_PATH
+	lcd $LOCAL_PATH
+	mput *
+	ls
+	close
+	bye
+	!
